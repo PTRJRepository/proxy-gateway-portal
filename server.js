@@ -280,7 +280,18 @@ function getProxyMiddleware(route) {
 
                 console.log(`➡️ Proxying: ${req.method} ${req.originalUrl} -> ${route.target}${proxyReq.path}`);
                 if (req.headers.cookie) {
-                    console.log(`🍪 Cookies present: ${req.headers.cookie}`);
+                    console.log(`🍪 Cookies present (Original): ${req.headers.cookie}`);
+
+                    // CRITICAL: Strip 'auth-token' (RS256) because it causes Backend (8002) to crash/error (HTTP 500/404)
+                    // Backend expects HS256 (payroll_auth_token) or nothing.
+                    const cookies = req.headers.cookie.split(';');
+                    const safeCookies = cookies.filter(c => !c.trim().startsWith('auth-token='));
+
+                    if (safeCookies.length < cookies.length) {
+                        const newCookieHeader = safeCookies.join(';');
+                        proxyReq.setHeader('cookie', newCookieHeader);
+                        console.log(`✂️  Sanitized Cookies (Removed auth-token): ${newCookieHeader}`);
+                    }
                 } else {
                     console.log('🍪 No cookies found in request');
                 }
