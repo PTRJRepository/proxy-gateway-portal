@@ -291,6 +291,12 @@ function getProxyMiddleware(route) {
                         const newCookieHeader = safeCookies.join(';');
                         proxyReq.setHeader('cookie', newCookieHeader);
                         console.log(`✂️  Sanitized Cookies (Removed auth-token): ${newCookieHeader}`);
+
+                        if (!newCookieHeader.includes('payroll_auth_token')) {
+                            console.log('⚠️  WARNING: payroll_auth_token is MISSING! Backend requests will be anonymous/fail. Please log in on Port 8002.');
+                        } else {
+                            console.log('✅  Backend Cookie (payroll_auth_token) present.');
+                        }
                     }
                 } else {
                     console.log('🍪 No cookies found in request');
