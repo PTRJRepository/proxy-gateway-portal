@@ -152,7 +152,16 @@ const UPAH_APP_PATHS = [
 console.log('🔍 Debug: __dirname:', __dirname);
 console.log('🔍 Debug: process.cwd():', process.cwd());
 console.log('🔍 Debug: upahDistPath:', upahDistPath);
-if (false) {
+// Serve Dashboard Assets (Fallback/Override)
+// This ensures assets like 'kebun sawit.webp' in Dashboard_Utama/public/assets are accessible
+const dashboardAssetsPath = path.join(__dirname, 'Dashboard_Utama', 'public', 'assets');
+if (fs.existsSync(dashboardAssetsPath)) {
+    console.log(`✅ Found dashboard assets: ${dashboardAssetsPath}`);
+    app.use('/assets', express.static(dashboardAssetsPath));
+    app.use('/upah/assets', express.static(dashboardAssetsPath));
+}
+
+if (fs.existsSync(upahDistPath)) {
     console.log(`✅ Found upah dist folder: ${upahDistPath}`);
 
     // Serve static assets from root paths (locally to ensure they load)
@@ -279,11 +288,34 @@ function getProxyMiddleware(route) {
             onProxyRes: (proxyRes, req, res) => {
                 console.log(`⬅️ Response: ${proxyRes.statusCode} from ${route.target}`);
 
+                // INTERCEPT 401/403 for HTML requests -> Force Logout/Redirect
+                if ((proxyRes.statusCode === 401 || proxyRes.statusCode === 403) &&
+                    req.headers['accept'] && req.headers['accept'].includes('text/html')) {
+                    console.log(`🚫 Auth Error (${proxyRes.statusCode}) for HTML request. Redirecting to /login.`);
+                    res.writeHead(302, { 'Location': '/login' });
+                    res.end();
+                    // Consume/discard the response data to avoid hanging
+                    proxyRes.resume();
+                    return;
+                }
+
                 const contentType = proxyRes.headers['content-type'] || '';
                 const contentEncoding = proxyRes.headers['content-encoding'] || '';
                 const isHtml = contentType.includes('text/html');
                 const isJs = contentType.includes('javascript') || contentType.includes('application/javascript');
                 const isCss = contentType.includes('text/css');
+
+                // Rewrite Location header for redirects
+                if (proxyRes.headers['location']) {
+                    const location = proxyRes.headers['location'];
+                    if (location.startsWith(route.target)) {
+                        // Rewrite http://localhost:8002/foo -> /upah/foo
+                        const relativePath = location.replace(route.target, '');
+                        // Check if it's a global path like /login, normally we want to keep it relative to route
+                        // But if user wants relative, we prepend route.path
+                        proxyRes.headers['location'] = `${route.path}${relativePath}`;
+                    }
+                }
 
                 // Skip rewriting for compressed content (gzip, deflate, br)
                 const isCompressed = ['gzip', 'deflate', 'br'].includes(contentEncoding);
@@ -299,6 +331,10 @@ function getProxyMiddleware(route) {
 
                     proxyRes.on('end', () => {
                         try {
+                            // Rewrite absolute paths (localhost:8002) to relative proxy paths
+                            // http://localhost:8002/api -> /upah/api
+                            const targetRegex = new RegExp(route.target, 'g');
+                            body = body.replace(targetRegex, route.path);
                             // Rewrite absolute paths to include base path
                             // /app.js → /absen/app.js
                             // /src/main.jsx → /absen/src/main.jsx

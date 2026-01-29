@@ -50,7 +50,8 @@ export async function middleware(request: NextRequest) {
         const response = NextResponse.redirect(new URL('/login', request.url))
         if (hasToken && !isValidToken) {
             response.cookies.delete('auth-token')
-            response.cookies.delete('payroll_auth_token')
+            // Do NOT delete payroll_auth_token as it might be valid for backend (HS256) even if invalid for dashboard (RS256)
+            // response.cookies.delete('payroll_auth_token')
             response.cookies.delete('payroll_user_info')
         }
         return response
@@ -68,6 +69,6 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-    // Match dashboard and admin routes, exclude api and static files
-    matcher: ['/((?!api|_next/static|_next/image|favicon.ico|config-path|assets).*)'],
+    // Match dashboard and admin routes, exclude api and static files, AND exclude /upah (handled by backend auth)
+    matcher: ['/((?!api|_next/static|_next/image|favicon.ico|config-path|assets|upah).*)'],
 }
