@@ -352,6 +352,11 @@ function getProxyMiddleware(route) {
                             // http://localhost:8002/api -> /upah/api
                             const targetRegex = new RegExp(route.target, 'g');
                             body = body.replace(targetRegex, route.path);
+
+                            // ALSO Rewrite public domain references to 8002 (which is blocked) to relative path
+                            // http://ptrjestate.rebinmas.com:8002/api -> /upah/api
+                            body = body.replace(/http:\/\/ptrjestate\.rebinmas\.com:8002/g, route.path);
+
                             // Rewrite absolute paths to include base path
                             // /app.js → /absen/app.js
                             // /src/main.jsx → /absen/src/main.jsx
