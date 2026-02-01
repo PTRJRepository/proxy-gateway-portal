@@ -776,3 +776,4 @@ nextApp.prepare().then(() => {
         console.log(`> 🔌 WebSocket proxy enabled`);
     });
 });
+// Force restart: Config updated for query route
