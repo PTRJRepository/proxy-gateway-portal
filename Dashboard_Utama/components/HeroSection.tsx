@@ -4,8 +4,11 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, ChevronDown } from 'lucide-react'
+import { useLanguage } from '@/context/LanguageContext'
 
 export default function HeroSection() {
+    const { t } = useLanguage()
+
     return (
         <section className="relative h-screen flex items-center justify-center overflow-hidden">
             {/* Background Image */}
@@ -62,12 +65,12 @@ export default function HeroSection() {
                     transition={{ duration: 0.6 }}
                     className="mb-8"
                 >
-                    <div className="relative w-28 h-28 mx-auto rounded-full bg-white/10 backdrop-blur-md p-2 shadow-2xl overflow-hidden">
+                    <div className="relative w-40 h-40 md:w-48 md:h-48 mx-auto rounded-full bg-white/10 backdrop-blur-md p-3 shadow-2xl overflow-hidden">
                         <Image
                             src="/assets/logo.webp"
                             alt="PT Rebinmas Jaya"
                             fill
-                            sizes="112px"
+                            sizes="(max-width: 768px) 160px, 192px"
                             className="object-cover rounded-full"
                             loading="eager"
                         />
@@ -80,14 +83,13 @@ export default function HeroSection() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                 >
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-                        <span className="block">Membangun Masa Depan</span>
+                        <span className="block">{t.hero.title1}</span>
                         <span className="block mt-2 bg-gradient-to-r from-golden-yellow via-yellow-300 to-golden-yellow bg-clip-text text-transparent">
-                            Berkelanjutan
+                            {t.hero.title2}
                         </span>
                     </h1>
                     <p className="text-lg md:text-xl lg:text-2xl mb-10 font-light max-w-3xl mx-auto text-gray-200 leading-relaxed">
-                        PT Rebinmas Jaya berkomitmen menghadirkan produk kelapa sawit berkualitas tinggi
-                        dengan standar operasional terbaik dan kepedulian terhadap masyarakat sekitar.
+                        {t.hero.description}
                     </p>
 
                     {/* Stats */}
@@ -99,7 +101,7 @@ export default function HeroSection() {
                             className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20"
                         >
                             <p className="text-3xl md:text-4xl font-bold text-golden-yellow">3</p>
-                            <p className="text-sm text-white/80">Estate Utama</p>
+                            <p className="text-sm text-white/80">{t.hero.stats.estateTitle}</p>
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -108,7 +110,7 @@ export default function HeroSection() {
                             className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20"
                         >
                             <p className="text-3xl md:text-4xl font-bold text-golden-yellow">10+</p>
-                            <p className="text-sm text-white/80">Divisi Kebun</p>
+                            <p className="text-sm text-white/80">{t.hero.stats.divisionTitle}</p>
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -117,7 +119,7 @@ export default function HeroSection() {
                             className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20"
                         >
                             <p className="text-3xl md:text-4xl font-bold text-golden-yellow">ISPO</p>
-                            <p className="text-sm text-white/80">Bersertifikat</p>
+                            <p className="text-sm text-white/80">{t.hero.stats.ispoTitle}</p>
                         </motion.div>
                     </div>
 
@@ -126,14 +128,14 @@ export default function HeroSection() {
                             href="/login"
                             className="group inline-flex items-center justify-center px-8 py-4 bg-palm-green hover:bg-palm-green-hover text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1"
                         >
-                            Portal Karyawan
+                            {t.hero.portalBtn}
                             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                         </Link>
                         <a
                             href="#about"
                             className="inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-semibold rounded-full border border-white/30 transition-all duration-300"
                         >
-                            Pelajari Lebih Lanjut
+                            {t.hero.learnMoreBtn}
                         </a>
                     </div>
                 </motion.div>

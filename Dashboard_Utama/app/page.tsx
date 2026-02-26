@@ -1,9 +1,31 @@
+'use client';
+
 import Navbar from '@/components/Navbar'
 import HeroSection from '@/components/HeroSection'
 import SatelliteMap from '@/components/SatelliteMapWrapper'
-import { MapPin, Phone, Mail, Building2, Factory, Leaf, Users, Award, TreePine, Heart, Globe, Shield } from 'lucide-react'
+import { MapPin, Phone, Mail, Building2, Factory, Leaf, Users, Award, TreePine, Heart, Globe, Shield, ExternalLink, Play, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
+import { useLanguage } from '@/context/LanguageContext'
+import { motion, Variants } from 'framer-motion'
 
 export default function Home() {
+  const { t } = useLanguage()
+
+  // Animation variants
+  const sectionVariants: Variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut", staggerChildren: 0.2 }
+    }
+  }
+
+  const childVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  }
+
   return (
     <main className="min-h-screen bg-gray-50">
       <Navbar />
@@ -11,182 +33,191 @@ export default function Home() {
 
       {/* Kilasan Perusahaan Section */}
       <section id="kilasan" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={sectionVariants}
+        >
           <div className="text-center max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-6">Kilasan Perusahaan</h2>
-            <div className="h-1 w-24 bg-palm-green mx-auto rounded-full mb-8" />
-            <p className="text-xl text-gray-600 leading-relaxed italic">
-              "Berbasis di jantung Kepulauan Bangka Belitung, PT Rebinmas Jaya adalah perusahaan perkebunan kelapa sawit yang memadukan efisiensi operasional dengan tanggung jawab sosial. Kami percaya bahwa pertumbuhan bisnis harus berjalan seiring dengan kesejahteraan masyarakat dan kelestarian lingkungan."
-            </p>
+            <motion.h2 variants={childVariants} className="text-3xl font-bold text-gray-900 sm:text-4xl mb-6">
+              {t.glance.title}
+            </motion.h2>
+            <motion.div variants={childVariants} className="h-1 w-24 bg-palm-green mx-auto rounded-full mb-8" />
+            <motion.p variants={childVariants} className="text-xl text-gray-600 leading-relaxed italic">
+              {t.glance.quote}
+            </motion.p>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Tentang Kami Section */}
       <section id="about" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={sectionVariants}
+        >
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Tentang Kami</h2>
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">{t.about.title}</h2>
             <div className="mt-4 h-1 w-24 bg-palm-green mx-auto rounded-full" />
           </div>
 
           {/* Profil Perusahaan */}
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-            <div className="space-y-6">
+            <motion.div variants={childVariants} className="space-y-6">
               <h3 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
                 <Building2 className="h-8 w-8 text-palm-green" />
-                Profil Perusahaan
+                {t.about.profileTitle}
               </h3>
               <div className="text-lg text-gray-600 leading-relaxed space-y-4">
-                <p>
-                  PT Rebinmas Jaya adalah perusahaan yang bergerak di bidang budidaya dan pengolahan kelapa sawit.
-                  Berkantor pusat di Jakarta dan memiliki basis operasional strategis di Kabupaten Belitung dan
-                  Belitung Timur, kami fokus pada produksi Tandan Buah Segar (TBS) dan Minyak Kelapa Sawit (CPO)
-                  yang memenuhi standar industri.
-                </p>
-                <p>
-                  Dengan pengalaman panjang di industri perkebunan, kami mengelola ribuan hektar lahan produktif
-                  yang tersebar di berbagai estate, dengan dukungan tenaga kerja profesional yang berdedikasi.
-                </p>
+                <p>{t.about.profileP1}</p>
+                <p>{t.about.profileP2}</p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-xl">
+            <motion.div variants={childVariants} className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-xl group">
               <div
-                className="absolute inset-0 bg-cover bg-center"
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                 style={{ backgroundImage: "url('/assets/kebun sawit.webp')" }}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-palm-green/80 to-earth-brown/80" />
               </div>
               <div className="relative h-full flex items-center justify-center text-center text-white p-8">
                 <div>
-                  <TreePine className="h-16 w-16 mx-auto mb-4 opacity-90" />
-                  <p className="text-lg font-semibold">Perkebunan Kelapa Sawit</p>
-                  <p className="text-sm opacity-80">Belitung, Bangka Belitung</p>
+                  <TreePine className="h-16 w-16 mx-auto mb-4 opacity-90 transition-transform duration-300 group-hover:-translate-y-2" />
+                  <p className="text-lg font-semibold">{t.about.plantationTitle}</p>
+                  <p className="text-sm opacity-80">{t.about.plantationLoc}</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* Visi & Misi */}
           <div className="grid md:grid-cols-2 gap-8">
             {/* Visi */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-palm-green hover:shadow-xl transition-shadow">
+            <motion.div variants={childVariants} className="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-palm-green hover:shadow-xl transition-shadow">
               <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
                 <Award className="h-7 w-7 text-golden-yellow" />
-                Visi
+                {t.about.visionTitle}
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                PT. Rebinmas Jaya berkomitmen untuk memproduksi CPO dan Kernel berkwalitas yang berkesinambungan,
-                dengan managemen yang professional didukung karyawan yang berdedikasi.
+                {t.about.visionDesc}
               </p>
-            </div>
+            </motion.div>
 
             {/* Misi */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-golden-yellow hover:shadow-xl transition-shadow">
+            <motion.div variants={childVariants} className="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-golden-yellow hover:shadow-xl transition-shadow">
               <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
                 <Leaf className="h-7 w-7 text-palm-green" />
-                Misi
+                {t.about.missionTitle}
               </h3>
               <ul className="text-gray-600 leading-relaxed space-y-3">
                 <li className="flex items-start gap-2">
                   <span className="text-palm-green font-bold">1.</span>
-                  Melakukan kegiatan usaha yang berwawasan lingkungan dan berkelanjutan.
+                  {t.about.mission1}
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-palm-green font-bold">2.</span>
-                  Menghasilkan produksi berkwalitas tinggi.
+                  {t.about.mission2}
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-palm-green font-bold">3.</span>
-                  Mendorong Pembelajaran secara terus menerus dan perbaikan dalam penerapannya.
+                  {t.about.mission3}
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-palm-green font-bold">4.</span>
-                  Menjadikan suatu perusahaan yang bertanggung jawab kepada masyarakat sekitar.
+                  {t.about.mission4}
                 </li>
               </ul>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Operasional Section */}
       <section id="operations" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={sectionVariants}
+        >
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Operasional</h2>
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">{t.operations.title}</h2>
             <div className="mt-4 h-1 w-24 bg-palm-green mx-auto rounded-full" />
           </div>
 
           {/* Estates Grid */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {/* Parit Gunung Estate */}
-            <div className="bg-gradient-to-br from-palm-green to-emerald-700 text-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+            <motion.div variants={childVariants} className="bg-gradient-to-br from-palm-green to-emerald-700 text-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
               <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-4">
                 <MapPin className="h-7 w-7" />
               </div>
               <h3 className="text-xl font-bold mb-2">Parit Gunung Estate</h3>
-              <p className="text-white/80 text-sm mb-4">Kecamatan Badau, Belitung</p>
+              <p className="text-white/80 text-sm mb-4">{t.operations.districtBadau}</p>
               <div className="flex flex-wrap gap-2">
                 <span className="px-3 py-1 bg-white/20 rounded-full text-xs">1A</span>
                 <span className="px-3 py-1 bg-white/20 rounded-full text-xs">1B</span>
                 <span className="px-3 py-1 bg-white/20 rounded-full text-xs">2A</span>
                 <span className="px-3 py-1 bg-white/20 rounded-full text-xs">2B</span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Air Ruak Estate */}
-            <div className="bg-gradient-to-br from-earth-brown to-amber-800 text-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+            <motion.div variants={childVariants} className="bg-gradient-to-br from-earth-brown to-amber-800 text-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
               <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-4">
                 <TreePine className="h-7 w-7" />
               </div>
               <h3 className="text-xl font-bold mb-2">Air Ruak Estate</h3>
-              <p className="text-white/80 text-sm mb-4">Kabupaten Belitung Timur</p>
+              <p className="text-white/80 text-sm mb-4">{t.operations.districtTimur}</p>
               <div className="flex flex-wrap gap-2">
                 <span className="px-3 py-1 bg-white/20 rounded-full text-xs">ARE A</span>
                 <span className="px-3 py-1 bg-white/20 rounded-full text-xs">ARE B1</span>
                 <span className="px-3 py-1 bg-white/20 rounded-full text-xs">ARE B2</span>
                 <span className="px-3 py-1 bg-white/20 rounded-full text-xs">ARE C</span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Darul Makmur Estate */}
-            <div className="bg-gradient-to-br from-teal-600 to-teal-800 text-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+            <motion.div variants={childVariants} className="bg-gradient-to-br from-teal-600 to-teal-800 text-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
               <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-4">
                 <Globe className="h-7 w-7" />
               </div>
               <h3 className="text-xl font-bold mb-2">Darul Makmur Estate</h3>
-              <p className="text-white/80 text-sm mb-4">Kabupaten Belitung</p>
+              <p className="text-white/80 text-sm mb-4">{t.operations.districtBelitung}</p>
               <div className="flex flex-wrap gap-2">
                 <span className="px-3 py-1 bg-white/20 rounded-full text-xs">Air Raya</span>
                 <span className="px-3 py-1 bg-white/20 rounded-full text-xs">Kandis</span>
                 <span className="px-3 py-1 bg-white/20 rounded-full text-xs">Cendong</span>
               </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* Satellite Map */}
-          <div className="mb-12">
+          <motion.div variants={childVariants} className="mb-12">
             <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
               <MapPin className="h-7 w-7 text-palm-green" />
-              Lokasi Operasional
+              {t.operations.mapTitle}
             </h3>
-            <SatelliteMap />
-          </div>
+            <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-200">
+              <SatelliteMap />
+            </div>
+          </motion.div>
 
           {/* Standar Kualitas */}
-          <div className="bg-gray-50 p-8 rounded-2xl">
+          <motion.div variants={childVariants} className="bg-gray-50 p-8 rounded-2xl border border-gray-100">
             <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
               <Shield className="h-7 w-7 text-palm-green" />
-              Standar Kualitas
+              {t.operations.qualityTitle}
             </h3>
             <div className="text-gray-600 leading-relaxed space-y-4">
-              <p>
-                Kami menerapkan <em>Good Agricultural Practices</em> (GAP) mulai dari pembibitan, perawatan,
-                hingga panen untuk memastikan Tandan Buah Segar (TBS) yang diproduksi memiliki rendemen
-                minyak yang tinggi.
-              </p>
+              <p dangerouslySetInnerHTML={{ __html: t.operations.qualityDesc.replace(/\*(.*?)\*/g, "<em>$1</em>") }}></p>
               <div className="flex flex-wrap gap-3">
                 <span className="px-4 py-2 bg-palm-green/10 text-palm-green rounded-full text-sm font-medium">GAP Certified</span>
                 <span className="px-4 py-2 bg-golden-yellow/10 text-earth-brown rounded-full text-sm font-medium">High Yield TBS</span>
@@ -194,126 +225,225 @@ export default function Home() {
                 <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">ISPO Compliant</span>
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Keberlanjutan & CSR Section */}
-      <section id="sustainability" className="py-20 bg-gradient-to-br from-palm-green to-earth-brown text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="sustainability" className="py-20 bg-gradient-to-br from-palm-green to-earth-brown text-white relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-golden-yellow/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4"></div>
+
+        <motion.div
+          className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={sectionVariants}
+        >
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold sm:text-4xl">Keberlanjutan & CSR</h2>
+            <h2 className="text-3xl font-bold sm:text-4xl">{t.sustainability.title}</h2>
             <div className="mt-4 h-1 w-24 bg-golden-yellow mx-auto rounded-full" />
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
             {/* Komitmen Lingkungan ISPO */}
-            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+            <motion.div variants={childVariants} className="bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/20 shadow-xl">
               <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
                 <Leaf className="h-7 w-7 text-golden-yellow" />
-                Komitmen Lingkungan (ISPO)
+                {t.sustainability.envTitle}
               </h3>
-              <p className="text-white/90 leading-relaxed">
-                PT Rebinmas Jaya berkomitmen penuh terhadap tata kelola perkebunan yang ramah lingkungan.
-                Kami telah dan terus berupaya memenuhi standar <strong>Indonesian Sustainable Palm Oil (ISPO)</strong>,
-                memastikan bahwa produk kami dihasilkan tanpa merusak keseimbangan ekosistem. Predikat kelas
-                kebun yang baik menjadi bukti keseriusan kami dalam pengelolaan lahan.
-              </p>
-            </div>
+              <p className="text-white/90 leading-relaxed" dangerouslySetInnerHTML={{ __html: t.sustainability.envDesc.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") }}></p>
+            </motion.div>
 
             {/* Pemberdayaan Masyarakat */}
-            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+            <motion.div variants={childVariants} className="bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/20 shadow-xl">
               <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
                 <Users className="h-7 w-7 text-golden-yellow" />
-                Pemberdayaan Masyarakat
+                {t.sustainability.commTitle}
               </h3>
               <p className="text-white/90 leading-relaxed mb-4">
-                Kami percaya bahwa perusahaan tidak bisa tumbuh sendirian. PT Rebinmas Jaya aktif menjalin
-                hubungan harmonis dengan masyarakat di sekitar wilayah operasional (Ring 1), termasuk desa-desa
-                di Kabupaten Belitung dan Belitung Timur.
+                {t.sustainability.commDesc}
               </p>
-              <div className="flex items-center gap-2 text-golden-yellow font-semibold">
+              <div className="flex items-center gap-2 text-golden-yellow font-semibold bg-black/20 p-4 rounded-xl">
                 <Heart className="h-5 w-5" />
-                Program Plasma untuk ekonomi warga lokal
+                {t.sustainability.plasma}
               </div>
-            </div>
+            </motion.div>
           </div>
 
-          {/* CSR & Bantuan Sosial */}
-          <div className="mt-12 bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
-            <h3 className="text-2xl font-bold mb-6 text-center">CSR & Bantuan Sosial</h3>
+          {/* CSR & Bantuan Sosial Grid */}
+          <motion.div variants={childVariants} className="mt-12 bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/20 shadow-xl">
+            <h3 className="text-2xl font-bold mb-8 text-center">{t.sustainability.csrTitle}</h3>
             <div className="grid sm:grid-cols-3 gap-6">
-              <div className="text-center p-4">
-                <div className="w-16 h-16 bg-golden-yellow/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="text-center p-4 group hover:bg-white/5 rounded-2xl transition-colors">
+                <div className="w-16 h-16 bg-golden-yellow/20 group-hover:bg-golden-yellow/40 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
                   <Heart className="h-8 w-8 text-golden-yellow" />
                 </div>
-                <p className="text-sm text-white/90">Bantuan paket sembako pada hari besar keagamaan (Ramadan/Idul Fitri)</p>
+                <p className="text-sm text-white/90">{t.sustainability.csr1}</p>
               </div>
-              <div className="text-center p-4">
-                <div className="w-16 h-16 bg-golden-yellow/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="text-center p-4 group hover:bg-white/5 rounded-2xl transition-colors">
+                <div className="w-16 h-16 bg-golden-yellow/20 group-hover:bg-golden-yellow/40 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
                   <Users className="h-8 w-8 text-golden-yellow" />
                 </div>
-                <p className="text-sm text-white/90">Penyaluran hewan kurban untuk masyarakat desa sekitar</p>
+                <p className="text-sm text-white/90">{t.sustainability.csr2}</p>
               </div>
-              <div className="text-center p-4">
-                <div className="w-16 h-16 bg-golden-yellow/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="text-center p-4 group hover:bg-white/5 rounded-2xl transition-colors">
+                <div className="w-16 h-16 bg-golden-yellow/20 group-hover:bg-golden-yellow/40 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
                   <Building2 className="h-8 w-8 text-golden-yellow" />
                 </div>
-                <p className="text-sm text-white/90">Bantuan infrastruktur untuk desa binaan (Air Batu Buding, Kacang Butor, Pelepak Pute)</p>
+                <p className="text-sm text-white/90">{t.sustainability.csr3}</p>
               </div>
             </div>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* NEW: Berita & CSR Media Coverage Section */}
+      <section id="news" className="py-20 bg-gray-50">
+        <motion.div
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={sectionVariants}
+        >
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">{t.news.title}</h2>
+            <div className="mt-4 h-1 w-24 bg-palm-green mx-auto rounded-full" />
           </div>
-        </div>
+
+          <div className="grid lg:grid-cols-3 gap-8 mb-12">
+            {/* News Articles */}
+            <div className="lg:col-span-2 grid sm:grid-cols-2 gap-6">
+              {[
+                {
+                  title: "Penyaluran Bansos Sembako Ramadhan",
+                  source: "Website Resmi Desa Air Batu Buding",
+                  link: "https://www.airbatubuding.desa.id/berita/read/penyaluran-bansos-sembako-oleh-pt-rebinmas-jaya-kepada-masyarakat-desa-air-batu-buding-1902052002/0"
+                },
+                {
+                  title: "Bantuan Sembako ke 7 Desa Area Perkebunan",
+                  source: "Portal Berita KejarFakta (Babel)",
+                  link: "https://babel2.kejarfakta.co/news/54802/pt-rebinmas-jaya-salurkan-bantuan-sembako-ke-7-desa-di-bulan-ramadhan"
+                },
+                {
+                  title: "Penyerahan Dana CSR untuk 7 Desa di Belitung dan Belitung Timur",
+                  source: "Media Jejak Kasus",
+                  link: "https://www.jejakkasus.co.id/pt-rebinmas-jaya-berikan-csr-untuk-7-desa-di-belitung-dan-belitung-timur/"
+                },
+                {
+                  title: "Bantuan Beasiswa dan Sembako",
+                  source: "Arsip Setda Kabupaten Belitung",
+                  link: "https://setda.belitung.go.id/desa-aik-batu-buding-terima-bantuan-csr-pt-rebinmas-jaya/"
+                }
+              ].map((news, idx) => (
+                <motion.a
+                  key={idx}
+                  href={news.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variants={childVariants}
+                  className="block group bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all border border-gray-100 hover:border-palm-green/30"
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                      {t.news.latestNews}
+                    </span>
+                    <ExternalLink className="h-4 w-4 text-gray-400 group-hover:text-palm-green transition-colors" />
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 group-hover:text-palm-green transition-colors mb-2 line-clamp-2">
+                    {news.title}
+                  </h4>
+                  <p className="text-sm text-gray-500 mb-4">{t.news.source}: {news.source}</p>
+                  <span className="text-sm font-medium text-palm-green flex items-center opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0">
+                    {t.news.readMore} <ArrowRight className="h-4 w-4 ml-1" />
+                  </span>
+                </motion.a>
+              ))}
+            </div>
+
+            {/* Featured Video Component */}
+            <motion.div variants={childVariants} className="lg:col-span-1">
+              <div className="bg-white rounded-2xl p-6 shadow-md border border-gray-100 h-full flex flex-col">
+                <div className="flex items-center gap-3 mb-6">
+                  <Play className="h-6 w-6 text-red-600" />
+                  <h3 className="text-xl font-bold text-gray-900">{t.news.videoTitle}</h3>
+                </div>
+                <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-gray-100 mt-auto">
+                  <iframe
+                    className="absolute top-0 left-0 w-full h-full"
+                    src="https://www.youtube.com/embed/MKUJY6S23k4"
+                    title="Video Penyerahan Dana CSR 7 Desa"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen>
+                  </iframe>
+                </div>
+                <p className="mt-4 text-sm text-gray-600 text-center">
+                  Dokumentasi acara penyerahan bantuan dana CSR perusahaan kepada masyarakat di 7 desa.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
       </section>
 
       {/* Hubungi Kami Section */}
-      <section id="contact" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="contact" className="py-20 bg-white">
+        <motion.div
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={sectionVariants}
+        >
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Hubungi Kami</h2>
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">{t.contact.title}</h2>
             <div className="mt-4 h-1 w-24 bg-palm-green mx-auto rounded-full" />
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Info Section */}
-            <div className="space-y-8">
+            <motion.div variants={childVariants} className="space-y-8">
               {/* Kantor Kebun */}
-              <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+              <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                 <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
                   <Factory className="h-6 w-6 text-palm-green" />
-                  Kantor Kebun
+                  {t.contact.estateOffice}
                 </h3>
                 <div className="text-gray-600 space-y-4">
                   <p className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-palm-green mt-0.5 flex-shrink-0" />
                     <span>
                       <strong>Parit Gunung Estate</strong><br />
-                      Dusun Parit Gunung, Desa Air Batu Buding<br />
-                      Kecamatan Badau, Belitung
+                      {t.operations.districtBadau}
                     </span>
                   </p>
                   <p className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-palm-green mt-0.5 flex-shrink-0" />
                     <span>
                       <strong>Air Ruak Estate</strong><br />
-                      Kabupaten Belitung Timur
+                      {t.operations.districtTimur}
                     </span>
                   </p>
                   <p className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-palm-green mt-0.5 flex-shrink-0" />
                     <span>
                       <strong>Darul Makmur Estate (Pelepak Pute)</strong><br />
-                      Kabupaten Belitung
+                      {t.operations.districtBelitung}
                     </span>
                   </p>
                 </div>
               </div>
 
               {/* Kantor Induk (Head Office) */}
-              <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+              <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                 <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
                   <Building2 className="h-6 w-6 text-palm-green" />
-                  Kantor Induk (Head Office)
+                  {t.contact.headOffice}
                 </h3>
                 <div className="text-gray-600 space-y-2">
                   <p className="flex items-start gap-3">
@@ -321,7 +451,7 @@ export default function Home() {
                     <span>
                       Dusun Parit Gunung, Desa Air Batu Buding<br />
                       Kecamatan Badau, Tanjung Pandan 33451<br />
-                      Kabupaten Belitung, Kepulauan Bangka Belitung
+                      Belitung, Kepulauan Bangka Belitung
                     </span>
                   </p>
                   <p className="flex items-center gap-3">
@@ -330,102 +460,109 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Contact Form */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
-              <h3 className="text-xl font-bold text-gray-900 mb-6">Formulir Kontak</h3>
+            <motion.div variants={childVariants} className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+              <h3 className="text-xl font-bold text-gray-900 mb-6">{t.contact.formTitle}</h3>
               <form className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Nama</label>
-                  <input
-                    type="text"
-                    id="name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-palm-green focus:border-transparent transition-all"
-                    placeholder="Nama lengkap Anda"
-                  />
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="col-span-2 sm:col-span-1">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">{t.contact.nameLbl}</label>
+                    <input
+                      type="text"
+                      id="name"
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-palm-green focus:border-transparent transition-all outline-none"
+                      placeholder={t.contact.namePh}
+                    />
+                  </div>
+                  <div className="col-span-2 sm:col-span-1">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">{t.contact.emailLbl}</label>
+                    <input
+                      type="email"
+                      id="email"
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-palm-green focus:border-transparent transition-all outline-none"
+                      placeholder={t.contact.emailPh}
+                    />
+                  </div>
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-palm-green focus:border-transparent transition-all"
-                    placeholder="email@contoh.com"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Subjek</label>
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">{t.contact.subjLbl}</label>
                   <input
                     type="text"
                     id="subject"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-palm-green focus:border-transparent transition-all"
-                    placeholder="Subjek pesan"
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-palm-green focus:border-transparent transition-all outline-none"
+                    placeholder={t.contact.subjPh}
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Pesan</label>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">{t.contact.msgLbl}</label>
                   <textarea
                     id="message"
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-palm-green focus:border-transparent transition-all resize-none"
-                    placeholder="Tulis pesan Anda di sini..."
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-palm-green focus:border-transparent transition-all resize-none outline-none"
+                    placeholder={t.contact.msgPh}
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full px-6 py-3 bg-palm-green hover:bg-palm-green-hover text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  className="w-full px-6 py-4 bg-palm-green hover:bg-palm-green-hover text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
-                  Kirim Pesan
+                  {t.contact.submitBtn}
                 </button>
               </form>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-earth-brown text-white py-12">
+      <footer className="bg-earth-brown text-white py-12 border-t-4 border-palm-green">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
-              <h4 className="text-lg font-bold mb-4 text-golden-yellow">PT Rebinmas Jaya</h4>
-              <p className="text-white/80 text-sm leading-relaxed">
-                Perusahaan perkebunan kelapa sawit yang berkomitmen pada keberlanjutan dan pemberdayaan masyarakat.
+              <div className="bg-white inline-block p-2 rounded-lg mb-4">
+                <Image src="/assets/logo.webp" alt="Logo" width={48} height={48} />
+              </div>
+              <h4 className="text-lg font-bold mb-2 text-golden-yellow">PT Rebinmas Jaya</h4>
+              <p className="text-white/80 text-sm leading-relaxed pr-4">
+                {t.footer.desc}
               </p>
             </div>
             <div>
-              <h4 className="text-lg font-bold mb-4 text-golden-yellow">Navigasi</h4>
+              <h4 className="text-lg font-bold mb-4 text-golden-yellow">{t.footer.navTitle}</h4>
               <ul className="text-white/80 text-sm space-y-2">
-                <li><a href="#kilasan" className="hover:text-white transition-colors">Kilasan Perusahaan</a></li>
-                <li><a href="#about" className="hover:text-white transition-colors">Tentang Kami</a></li>
-                <li><a href="#operations" className="hover:text-white transition-colors">Operasional</a></li>
-                <li><a href="#sustainability" className="hover:text-white transition-colors">Keberlanjutan & CSR</a></li>
-                <li><a href="#contact" className="hover:text-white transition-colors">Hubungi Kami</a></li>
+                <li><a href="#kilasan" className="hover:text-white transition-colors">{t.glance.title}</a></li>
+                <li><a href="#about" className="hover:text-white transition-colors">{t.about.title}</a></li>
+                <li><a href="#operations" className="hover:text-white transition-colors">{t.operations.title}</a></li>
+                <li><a href="#sustainability" className="hover:text-white transition-colors">{t.sustainability.title}</a></li>
+                <li><a href="#news" className="hover:text-white transition-colors">{t.news.title}</a></li>
+                <li><a href="#contact" className="hover:text-white transition-colors">{t.contact.title}</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-lg font-bold mb-4 text-golden-yellow">Kontak</h4>
-              <div className="text-white/80 text-sm space-y-2">
-                <p className="flex items-center gap-2">
-                  <Phone className="h-4 w-4" />
+              <h4 className="text-lg font-bold mb-4 text-golden-yellow">{t.footer.contactTitle}</h4>
+              <div className="text-white/80 text-sm space-y-3">
+                <p className="flex items-center gap-3">
+                  <Phone className="h-5 w-5 text-golden-yellow" />
                   (021) 51401888
                 </p>
-                <p className="flex items-center gap-2">
-                  <Mail className="h-4 w-4" />
+                <p className="flex items-center gap-3">
+                  <Mail className="h-5 w-5 text-golden-yellow" />
                   info@rebinmasjaya.co.id
                 </p>
-                <p className="flex items-start gap-2">
-                  <MapPin className="h-4 w-4 mt-0.5" />
+                <p className="flex items-start gap-3">
+                  <MapPin className="h-5 w-5 text-golden-yellow mt-0.5 flex-shrink-0" />
                   Belitung, Bangka Belitung
                 </p>
               </div>
             </div>
           </div>
-          <div className="border-t border-white/20 pt-8 text-center">
-            <p className="text-white/60 text-sm">
-              &copy; {new Date().getFullYear()} PT Rebinmas Jaya. Hak Cipta Dilindungi.
-            </p>
+          <div className="border-t border-white/20 pt-8 mt-8 flex flex-col md:flex-row items-center justify-between text-white/60 text-sm">
+            <p>&copy; {new Date().getFullYear()} {t.footer.rights}</p>
+            <div className="mt-4 md:mt-0 space-x-4">
+              <span>Pusat Data Karyawan</span>
+            </div>
           </div>
         </div>
       </footer>

@@ -1,0 +1,93 @@
+{
+    "nav": {
+        "home": "Beranda",
+        "about": "Tentang",
+        "operations": "Operasional",
+        "sustainability": "Keberlanjutan",
+        "news": "CSR & Berita",
+        "contact": "Kontak",
+        "portal": "Portal Karyawan",
+        "company": "PT Rebinmas Jaya",
+        "tagline": "Perkebunan Kelapa Sawit"
+    },
+    "hero": {
+        "title1": "Membangun Masa Depan",
+        "title2": "Berkelanjutan",
+        "description": "PT Rebinmas Jaya berkomitmen menghadirkan produk kelapa sawit berkualitas tinggi dengan standar operasional terbaik dan kepedulian terhadap masyarakat sekitar.",
+        "stats": {
+            "estateTitle": "Estate Utama",
+            "divisionTitle": "Divisi Kebun",
+            "ispoTitle": "Bersertifikat"
+        },
+        "portalBtn": "Portal Karyawan",
+        "learnMoreBtn": "Pelajari Lebih Lanjut"
+    },
+    "glance": {
+        "title": "Kilasan Perusahaan",
+        "quote": "\"Berbasis di jantung Kepulauan Bangka Belitung, PT Rebinmas Jaya adalah perusahaan perkebunan kelapa sawit yang memadukan efisiensi operasional dengan tanggung jawab sosial. Kami percaya bahwa pertumbuhan bisnis harus berjalan seiring dengan kesejahteraan masyarakat dan kelestarian lingkungan.\""
+    },
+    "about": {
+        "title": "Tentang Kami",
+        "profileTitle": "Profil Perusahaan",
+        "profileP1": "PT Rebinmas Jaya adalah perusahaan yang bergerak di bidang budidaya dan pengolahan kelapa sawit. Berkantor pusat di Jakarta dan memiliki basis operasional strategis di Kabupaten Belitung dan Belitung Timur, kami fokus pada produksi Tandan Buah Segar (TBS) dan Minyak Kelapa Sawit (CPO) yang memenuhi standar industri.",
+        "profileP2": "Dengan pengalaman panjang di industri perkebunan, kami mengelola ribuan hektar lahan produktif yang tersebar di berbagai estate, dengan dukungan tenaga kerja profesional yang berdedikasi.",
+        "plantationTitle": "Perkebunan Kelapa Sawit",
+        "plantationLoc": "Belitung, Bangka Belitung",
+        "visionTitle": "Visi",
+        "visionDesc": "PT. Rebinmas Jaya berkomitmen untuk memproduksi CPO dan Kernel berkwalitas yang berkesinambungan, dengan managemen yang professional didukung karyawan yang berdedikasi.",
+        "missionTitle": "Misi",
+        "mission1": "Melakukan kegiatan usaha yang berwawasan lingkungan dan berkelanjutan.",
+        "mission2": "Menghasilkan produksi berkwalitas tinggi.",
+        "mission3": "Mendorong Pembelajaran secara terus menerus dan perbaikan dalam penerapannya.",
+        "mission4": "Menjadikan suatu perusahaan yang bertanggung jawab kepada masyarakat sekitar."
+    },
+    "operations": {
+        "title": "Operasional",
+        "districtBelitung": "Kabupaten Belitung",
+        "districtTimur": "Kabupaten Belitung Timur",
+        "districtBadau": "Kecamatan Badau, Belitung",
+        "mapTitle": "Lokasi Operasional",
+        "qualityTitle": "Standar Kualitas",
+        "qualityDesc": "Kami menerapkan *Good Agricultural Practices* (GAP) mulai dari pembibitan, perawatan, hingga panen untuk memastikan Tandan Buah Segar (TBS) yang diproduksi memiliki rendemen minyak yang tinggi."
+    },
+    "sustainability": {
+        "title": "Keberlanjutan & CSR",
+        "envTitle": "Komitmen Lingkungan (ISPO)",
+        "envDesc": "PT Rebinmas Jaya berkomitmen penuh terhadap tata kelola perkebunan yang ramah lingkungan. Kami telah dan terus berupaya memenuhi standar **Indonesian Sustainable Palm Oil (ISPO)**, memastikan bahwa produk kami dihasilkan tanpa merusak keseimbangan ekosistem. Predikat kelas kebun yang baik menjadi bukti keseriusan kami dalam pengelolaan lahan.",
+        "commTitle": "Pemberdayaan Masyarakat",
+        "commDesc": "Kami percaya bahwa perusahaan tidak bisa tumbuh sendirian. PT Rebinmas Jaya aktif menjalin hubungan harmonis dengan masyarakat di sekitar wilayah operasional (Ring 1), termasuk desa-desa di Kabupaten Belitung dan Belitung Timur.",
+        "plasma": "Program Plasma untuk ekonomi warga lokal",
+        "csrTitle": "CSR & Bantuan Sosial",
+        "csr1": "Bantuan paket sembako pada hari besar keagamaan (Ramadan/Idul Fitri)",
+        "csr2": "Penyaluran hewan kurban untuk masyarakat desa sekitar",
+        "csr3": "Bantuan infrastruktur untuk desa binaan (Air Batu Buding, Kacang Butor, Pelepak Pute)"
+    },
+    "news": {
+        "title": "Berita & CSR PT Rebinmas Jaya",
+        "readMore": "Baca Selengkapnya",
+        "source": "Sumber",
+        "videoTitle": "Video Penyaluran CSR",
+        "latestNews": "Berita Terkini"
+    },
+    "contact": {
+        "title": "Hubungi Kami",
+        "estateOffice": "Kantor Kebun",
+        "headOffice": "Kantor Induk (Head Office)",
+        "formTitle": "Formulir Kontak",
+        "nameLbl": "Nama",
+        "namePh": "Nama lengkap Anda",
+        "emailLbl": "Email",
+        "emailPh": "email@contoh.com",
+        "subjLbl": "Subjek",
+        "subjPh": "Subjek pesan",
+        "msgLbl": "Pesan",
+        "msgPh": "Tulis pesan Anda di sini...",
+        "submitBtn": "Kirim Pesan"
+    },
+    "footer": {
+        "desc": "Perusahaan perkebunan kelapa sawit yang berkomitmen pada keberlanjutan dan pemberdayaan masyarakat.",
+        "navTitle": "Navigasi",
+        "contactTitle": "Kontak",
+        "rights": "PT Rebinmas Jaya. Hak Cipta Dilindungi."
+    }
+}

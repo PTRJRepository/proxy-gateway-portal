@@ -1,0 +1,93 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "About",
+        "operations": "Operations",
+        "sustainability": "Sustainability",
+        "news": "CSR & News",
+        "contact": "Contact",
+        "portal": "Employee Portal",
+        "company": "PT Rebinmas Jaya",
+        "tagline": "Palm Oil Plantation"
+    },
+    "hero": {
+        "title1": "Building a Sustainable",
+        "title2": "Future",
+        "description": "PT Rebinmas Jaya is committed to delivering high-quality palm oil products with the best operational standards and care for the surrounding community.",
+        "stats": {
+            "estateTitle": "Main Estates",
+            "divisionTitle": "Plantation Divisions",
+            "ispoTitle": "Certified"
+        },
+        "portalBtn": "Employee Portal",
+        "learnMoreBtn": "Learn More"
+    },
+    "glance": {
+        "title": "Company at a Glance",
+        "quote": "\"Based in the heart of the Bangka Belitung Islands, PT Rebinmas Jaya is a palm oil plantation company that combines operational efficiency with social responsibility. We believe that business growth must go hand in hand with community welfare and environmental sustainability.\""
+    },
+    "about": {
+        "title": "About Us",
+        "profileTitle": "Company Profile",
+        "profileP1": "PT Rebinmas Jaya is a company engaged in the cultivation and processing of palm oil. Headquartered in Jakarta with a strategic operational base in Belitung and East Belitung Regencies, we focus on the production of Fresh Fruit Bunches (FFB) and Crude Palm Oil (CPO) that meet industry standards.",
+        "profileP2": "With long experience in the plantation industry, we manage thousands of hectares of productive land spread across various estates, supported by a dedicated professional workforce.",
+        "plantationTitle": "Palm Oil Plantation",
+        "plantationLoc": "Belitung, Bangka Belitung",
+        "visionTitle": "Vision",
+        "visionDesc": "PT. Rebinmas Jaya is committed to producing sustainable quality CPO and Kernel, with professional management supported by dedicated employees.",
+        "missionTitle": "Mission",
+        "mission1": "Conducting business activities that are environmentally friendly and sustainable.",
+        "mission2": "Producing high-quality production.",
+        "mission3": "Encouraging continuous learning and improvement in its application.",
+        "mission4": "Becoming a company that is responsible to the surrounding community."
+    },
+    "operations": {
+        "title": "Operations",
+        "districtBelitung": "Belitung Regency",
+        "districtTimur": "East Belitung Regency",
+        "districtBadau": "Badau District, Belitung",
+        "mapTitle": "Operational Locations",
+        "qualityTitle": "Quality Standards",
+        "qualityDesc": "We implement *Good Agricultural Practices* (GAP) from nurseries, maintenance, to harvesting to ensure the Fresh Fruit Bunches (FFB) produced have a high oil yield."
+    },
+    "sustainability": {
+        "title": "Sustainability & CSR",
+        "envTitle": "Environmental Commitment (ISPO)",
+        "envDesc": "PT Rebinmas Jaya is fully committed to environmentally friendly plantation governance. We have and continue to strive to meet the **Indonesian Sustainable Palm Oil (ISPO)** standards, ensuring that our products are produced without damaging the ecosystem balance. The good plantation class predicate is proof of our seriousness in land management.",
+        "commTitle": "Community Empowerment",
+        "commDesc": "We believe that a company cannot grow alone. PT Rebinmas Jaya actively establishes harmonious relationships with communities around the operational areas (Ring 1), including villages in Belitung and East Belitung Regencies.",
+        "plasma": "Plasma Program for local economic empowerment",
+        "csrTitle": "CSR & Social Assistance",
+        "csr1": "Distribution of basic food packages on religious holidays (Ramadan/Eid)",
+        "csr2": "Distribution of sacrificial animals for surrounding village communities",
+        "csr3": "Infrastructure assistance for fostered villages (Air Batu Buding, Kacang Butor, Pelepak Pute)"
+    },
+    "news": {
+        "title": "PT Rebinmas Jaya News & CSR",
+        "readMore": "Read More",
+        "source": "Source",
+        "videoTitle": "CSR Distribution Video",
+        "latestNews": "Latest News"
+    },
+    "contact": {
+        "title": "Contact Us",
+        "estateOffice": "Estate Office",
+        "headOffice": "Head Office",
+        "formTitle": "Contact Form",
+        "nameLbl": "Name",
+        "namePh": "Your full name",
+        "emailLbl": "Email",
+        "emailPh": "email@example.com",
+        "subjLbl": "Subject",
+        "subjPh": "Message subject",
+        "msgLbl": "Message",
+        "msgPh": "Write your message here...",
+        "submitBtn": "Send Message"
+    },
+    "footer": {
+        "desc": "A palm oil plantation company committed to sustainability and community empowerment.",
+        "navTitle": "Navigation",
+        "contactTitle": "Contact",
+        "rights": "PT Rebinmas Jaya. All Rights Reserved."
+    }
+}

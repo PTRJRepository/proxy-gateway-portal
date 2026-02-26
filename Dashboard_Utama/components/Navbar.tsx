@@ -3,19 +3,24 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X, ArrowRight } from 'lucide-react'
+import { Menu, X, ArrowRight, Globe } from 'lucide-react'
+import { useLanguage } from '@/context/LanguageContext'
 
-const navLinks = [
-    { name: 'Beranda', href: '#' },
-    { name: 'Tentang', href: '#about' },
-    { name: 'Operasional', href: '#operations' },
-    { name: 'Keberlanjutan', href: '#sustainability' },
-    { name: 'Kontak', href: '#contact' },
-]
+// navLinks removed, will be built dynamically inside component
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+    const { language, setLanguage, t } = useLanguage()
+
+    const navLinks = [
+        { name: t.nav.home, href: '#' },
+        { name: t.nav.about, href: '#about' },
+        { name: t.nav.operations, href: '#operations' },
+        { name: t.nav.sustainability, href: '#sustainability' },
+        { name: t.nav.news, href: '#news' },
+        { name: t.nav.contact, href: '#contact' },
+    ]
 
     useEffect(() => {
         const handleScroll = () => {
@@ -28,8 +33,8 @@ export default function Navbar() {
     return (
         <nav
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-                    ? 'bg-white/95 backdrop-blur-md shadow-lg py-2'
-                    : 'bg-gradient-to-b from-black/50 to-transparent py-4'
+                ? 'bg-white/95 backdrop-blur-md shadow-lg py-2'
+                : 'bg-gradient-to-b from-black/50 to-transparent py-4'
                 }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -45,8 +50,8 @@ export default function Navbar() {
                             />
                         </div>
                         <div className={`hidden sm:block transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'}`}>
-                            <p className="font-bold text-lg leading-tight">PT Rebinmas Jaya</p>
-                            <p className={`text-xs ${isScrolled ? 'text-gray-500' : 'text-white/80'}`}>Palm Oil Plantation</p>
+                            <p className="font-bold text-lg leading-tight">{t.nav.company}</p>
+                            <p className={`text-xs ${isScrolled ? 'text-gray-500' : 'text-white/80'}`}>{t.nav.tagline}</p>
                         </div>
                     </Link>
 
@@ -57,21 +62,32 @@ export default function Navbar() {
                                 key={link.name}
                                 href={link.href}
                                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 ${isScrolled
-                                        ? 'text-gray-700 hover:text-palm-green hover:bg-palm-green/10'
-                                        : 'text-white/90 hover:text-white hover:bg-white/10'
+                                    ? 'text-gray-700 hover:text-palm-green hover:bg-palm-green/10'
+                                    : 'text-white/90 hover:text-white hover:bg-white/10'
                                     }`}
                             >
                                 {link.name}
                             </a>
                         ))}
+                        <button
+                            onClick={() => setLanguage(language === 'id' ? 'en' : 'id')}
+                            className={`ml-2 p-2 rounded-full transition-all duration-300 flex items-center gap-2 ${isScrolled
+                                ? 'text-gray-700 hover:bg-gray-100 border border-gray-200'
+                                : 'text-white hover:bg-white/20 border border-white/30'
+                                }`}
+                            aria-label="Toggle Language"
+                        >
+                            <Globe className="h-4 w-4" />
+                            <span className="text-xs font-bold uppercase">{language}</span>
+                        </button>
                         <Link
                             href="/login"
                             className={`ml-4 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 ${isScrolled
-                                    ? 'bg-palm-green text-white hover:bg-palm-green-hover shadow-md hover:shadow-lg'
-                                    : 'bg-white/20 backdrop-blur-md text-white border border-white/30 hover:bg-white/30'
+                                ? 'bg-palm-green text-white hover:bg-palm-green-hover shadow-md hover:shadow-lg'
+                                : 'bg-white/20 backdrop-blur-md text-white border border-white/30 hover:bg-white/30'
                                 }`}
                         >
-                            Portal Karyawan <ArrowRight className="h-4 w-4" />
+                            {t.nav.portal} <ArrowRight className="h-4 w-4" />
                         </Link>
                     </div>
 
@@ -89,14 +105,25 @@ export default function Navbar() {
                 {isMobileMenuOpen && (
                     <div className="md:hidden mt-4 pb-4 border-t border-white/20">
                         <div className="pt-4 space-y-2">
+                            {/* Language Switcher Mobile */}
+                            <button
+                                onClick={() => setLanguage(language === 'id' ? 'en' : 'id')}
+                                className={`w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-colors border ${isScrolled
+                                    ? 'text-gray-700 hover:bg-gray-100 border-gray-200'
+                                    : 'text-white hover:bg-white/10 border-white/30'
+                                    }`}
+                            >
+                                <Globe className="h-4 w-4" />
+                                <span>Language: {language === 'id' ? 'EN' : 'ID'}</span>
+                            </button>
                             {navLinks.map((link) => (
                                 <a
                                     key={link.name}
                                     href={link.href}
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${isScrolled
-                                            ? 'text-gray-700 hover:bg-gray-100'
-                                            : 'text-white hover:bg-white/10'
+                                        ? 'text-gray-700 hover:bg-gray-100'
+                                        : 'text-white hover:bg-white/10'
                                         }`}
                                 >
                                     {link.name}
@@ -107,7 +134,7 @@ export default function Navbar() {
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 className="block px-4 py-3 bg-palm-green text-white rounded-lg text-sm font-semibold text-center mt-4"
                             >
-                                Portal Karyawan
+                                {t.nav.portal}
                             </Link>
                         </div>
                     </div>
