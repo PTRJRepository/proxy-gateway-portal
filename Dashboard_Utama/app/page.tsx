@@ -241,11 +241,10 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div variants={childVariants} className="order-2 lg:order-1 relative rounded-3xl overflow-hidden shadow-2xl h-80 lg:h-[500px]">
               <Image
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfRcakmvtCveoB9xJokgKKZTnFmDrwByzm6A&s"
+                src="https://elearning2.be.bisa.ai/portofolio/media/carousel_portofolio/2023-06-10_221301_41345_carousel_portofolio_3.png"
                 alt="Pertanian Presisi"
                 fill
                 className="object-cover"
-                unoptimized
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
@@ -313,7 +312,6 @@ export default function Home() {
                 alt="Dashboard HR"
                 fill
                 className="object-cover"
-                unoptimized
               />
             </motion.div>
             <motion.div variants={childVariants} className="order-1 lg:order-2 space-y-6">
@@ -454,12 +452,14 @@ export default function Home() {
               />
             </div>
 
+            ```tsx
             {/* Placeholder Grid Items */}
             {[3, 4].map((item) => (
               <div key={item} className="relative rounded-2xl overflow-hidden h-48 md:h-[192px] shadow-lg bg-gray-100 flex items-center justify-center border-2 border-dashed border-gray-300">
-                <span className="text-sm font-semibold text-gray-400 text-center px-4">Ruang untuk Foto CSR Asli Anda</span>
+                <span className="text-sm font-semibold text-gray-400 text-center px-4">foto belum tersedia</span>
               </div>
             ))}
+            ```
           </motion.div>
         </motion.div>
       </section>
@@ -713,7 +713,7 @@ export default function Home() {
                 </p>
                 <p className="flex items-center gap-3">
                   <Mail className="h-5 w-5 text-golden-yellow" />
-                  info@rebinmasjaya.com
+                  info@rebinmas.com
                 </p>
                 <p className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-golden-yellow mt-0.5 flex-shrink-0" />

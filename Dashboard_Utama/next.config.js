@@ -47,6 +47,10 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'memory.co.ke',
             },
+            {
+                protocol: 'https',
+                hostname: 'elearning2.be.bisa.ai',
+            },
         ],
     },
 };
