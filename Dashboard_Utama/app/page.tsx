@@ -457,9 +457,7 @@ export default function Home() {
             {/* Placeholder Grid Items */}
             {[3, 4].map((item) => (
               <div key={item} className="relative rounded-2xl overflow-hidden h-48 md:h-[192px] shadow-lg bg-gray-100 flex items-center justify-center border-2 border-dashed border-gray-300">
-                <span className="text-sm font-semibold text-gray-400 text-center px-4">
-                  Foto belum tersedia
-                </span>
+                <span className="text-sm font-semibold text-gray-400 text-center px-4">Ruang untuk Foto CSR Asli Anda</span>
               </div>
             ))}
           </motion.div>
@@ -715,7 +713,7 @@ export default function Home() {
                 </p>
                 <p className="flex items-center gap-3">
                   <Mail className="h-5 w-5 text-golden-yellow" />
-                  info@rebinmas.com
+                  info@rebinmasjaya.com
                 </p>
                 <p className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-golden-yellow mt-0.5 flex-shrink-0" />

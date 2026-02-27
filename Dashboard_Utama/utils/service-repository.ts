@@ -68,20 +68,6 @@ export class ServiceRepository {
     }
 
     /**
-     * Get services for a specific user (combines role permissions and user-specific permissions)
-     */
-    async findByUser(userId: number, role: string): Promise<Service[]> {
-        return db.query<Service>(
-            `SELECT DISTINCT s.* FROM service_ptrj s
-             LEFT JOIN role_service_permission rsp ON s.serviceId = rsp.serviceId AND rsp.role = @role
-             LEFT JOIN AccessControl ac ON s.serviceId = ac.serviceId AND ac.userId = @userId
-             WHERE (rsp.id IS NOT NULL OR ac.id IS NOT NULL) AND s.enabled = 1
-             ORDER BY s.name`,
-            { userId: String(userId), role }
-        )
-    }
-
-    /**
      * Get all role permissions
      */
     async findAllPermissions(): Promise<RolePermission[]> {

@@ -58,21 +58,6 @@ GO -- Create role_service_permission table (uses serviceId string, not INT)
     );
 PRINT 'Table role_service_permission created';
 END
-GO -- Create AccessControl table for user-specific service access
-    IF NOT EXISTS (
-        SELECT *
-        FROM sysobjects
-        WHERE name = 'AccessControl'
-            AND xtype = 'U'
-    ) BEGIN CREATE TABLE AccessControl (
-        id INT IDENTITY(1, 1) PRIMARY KEY,
-        userId NVARCHAR(255) NOT NULL,
-        serviceId NVARCHAR(255) NOT NULL,
-        FOREIGN KEY (serviceId) REFERENCES service_ptrj(serviceId) ON DELETE CASCADE,
-        CONSTRAINT UQ_user_access_control UNIQUE (userId, serviceId)
-    );
-PRINT 'Table AccessControl created';
-END
 GO -- Seed Services (from routes-config.json)
     IF NOT EXISTS (
         SELECT *

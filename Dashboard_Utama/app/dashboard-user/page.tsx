@@ -45,8 +45,8 @@ export default async function DashboardUserPage() {
         )
     }
 
-    // Get services authorized for this user's role and specific access from database
-    const services = await serviceRepository.findByUser(Number(user.id), user.role)
+    // Get services authorized for this user's role from database
+    const services = await serviceRepository.findByRole(user.role)
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
