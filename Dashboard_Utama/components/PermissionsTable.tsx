@@ -8,11 +8,10 @@ import { Shield, Check, X, Loader2 } from 'lucide-react'
 interface PermissionsTableProps {
     services: Service[]
     permissions: RolePermission[]
+    roles: string[]
 }
 
-const ROLES = ['ADMIN', 'KERANI', 'MNGR', 'ASISTEN', 'MANDOR', 'VISITOR'] // Add other roles as needed
-
-export default function PermissionsTable({ services, permissions }: PermissionsTableProps) {
+export default function PermissionsTable({ services, permissions, roles }: PermissionsTableProps) {
     const [isPending, startTransition] = useTransition()
     const [optimisticPermissions, setOptimisticPermissions] = useState<RolePermission[]>(permissions)
 
@@ -57,7 +56,7 @@ export default function PermissionsTable({ services, permissions }: PermissionsT
                     <thead>
                         <tr className="bg-gray-50 text-gray-600 text-sm uppercas tracking-wider">
                             <th className="px-6 py-4 font-semibold border-b border-gray-200">Layanan</th>
-                            {ROLES.map(role => (
+                            {roles.map(role => (
                                 <th key={role} className="px-6 py-4 font-semibold border-b border-gray-200 text-center w-32">
                                     {role}
                                 </th>
@@ -85,7 +84,7 @@ export default function PermissionsTable({ services, permissions }: PermissionsT
                                         </div>
                                     </div>
                                 </td>
-                                {ROLES.map(role => {
+                                {roles.map(role => {
                                     const access = hasPermission(role, service.serviceId)
                                     return (
                                         <td key={`${role}-${service.serviceId}`} className="px-6 py-4 text-center">

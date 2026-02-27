@@ -23,7 +23,7 @@ export async function createUser(formData: FormData) {
     }
 
     // Validate role
-    const validRoles = ['ADMIN', 'KERANI', 'ACCOUNTING', 'VISITOR']
+    const validRoles = ['ADMIN', 'KERANI', 'ACCOUNTING', 'AKUNTING', 'HRD', 'PAJAK', 'VISITOR']
     if (!validRoles.includes(role)) {
         return { error: 'Peran tidak valid' }
     }
@@ -88,7 +88,7 @@ export async function updateUser(userId: string, formData: FormData) {
     }
 
     // Validate role
-    const validRoles = ['ADMIN', 'KERANI', 'ACCOUNTING', 'VISITOR']
+    const validRoles = ['ADMIN', 'KERANI', 'ACCOUNTING', 'AKUNTING', 'HRD', 'PAJAK', 'VISITOR']
     if (!validRoles.includes(role)) {
         return { error: 'Peran tidak valid' }
     }

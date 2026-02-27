@@ -76,6 +76,16 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
     const services = await getServices()
     const permissions = await getPermissions()
 
+    // Dynamically calculate the list of roles to display
+    // 1. Standard predefined roles
+    const predefinedRoles = ['ADMIN', 'KERANI', 'ACCOUNTING', 'VISITOR', 'HRD', 'PAJAK', 'MNGR', 'ASISTEN', 'MANDOR', 'AKUNTING']
+    // 2. Roles from existing users in database
+    const userRoles = users.map(u => u.role)
+    // 3. Roles from existing permissions in database
+    const permRoles = permissions.map(p => p.role)
+    // Combine and keep unique
+    const uniqueRoles = Array.from(new Set([...predefinedRoles, ...userRoles, ...permRoles])).sort()
+
     return (
         <div className="space-y-6">
             <div className="flex justify-between items-center">
@@ -114,7 +124,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
                 <UserManagement users={users} services={services} />
             ) : (
                 <div className="space-y-8">
-                    <PermissionsTable services={services} permissions={permissions} />
+                    <PermissionsTable services={services} permissions={permissions} roles={uniqueRoles} />
                     <div className="border-t border-gray-200 pt-8">
                         <h3 className="text-lg font-bold text-gray-900 mb-4">Tambah Layanan Baru</h3>
                         <AddServiceForm />

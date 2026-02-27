@@ -207,6 +207,19 @@ async function setupAndSeed() {
             END
         `);
 
+        // ACCESS CONTROL TABLE (User specific services)
+        await pool.request().query(`
+            IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='AccessControl' AND xtype='U')
+            BEGIN
+                CREATE TABLE AccessControl (
+                    id INT IDENTITY(1,1) PRIMARY KEY,
+                    userId NVARCHAR(255) NOT NULL,
+                    serviceId NVARCHAR(50) NOT NULL,
+                    FOREIGN KEY (serviceId) REFERENCES service_ptrj(serviceId) ON DELETE CASCADE
+                );
+            END
+        `);
+
         // 3. Seed Users
         console.log('\nSeeding/Updating users...');
         for (const user of usersToSeed) {
