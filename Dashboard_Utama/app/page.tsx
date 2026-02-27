@@ -3,13 +3,23 @@
 import Navbar from '@/components/Navbar'
 import HeroSection from '@/components/HeroSection'
 import SatelliteMap from '@/components/SatelliteMapWrapper'
-import { MapPin, Phone, Mail, Building2, Factory, Leaf, Users, Award, TreePine, Heart, Globe, Shield, ExternalLink, Play, ArrowRight } from 'lucide-react'
+import { MapPin, Phone, Mail, Building2, Factory, Leaf, Users, Award, TreePine, Heart, Globe, Shield, ExternalLink, Play, ArrowRight, X } from 'lucide-react'
 import Image from 'next/image'
 import { useLanguage } from '@/context/LanguageContext'
-import { motion, Variants } from 'framer-motion'
+import { motion, Variants, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
 
 export default function Home() {
   const { t } = useLanguage()
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+
+  const galleryImages = [
+    { src: '/assets/CSR_1.webp', alt: 'Distribusi Sembako' },
+    { src: '/assets/CSR_2.webp', alt: 'Bantuan ke Desa' },
+    { src: '/assets/CSR_3.webp', alt: 'Kegiatan Sosial' },
+    { src: '/assets/CSR_4.webp', alt: 'Pemberdayaan Masyarakat' },
+    { src: '/assets/CSR_5.webp', alt: 'Bersama Warga' },
+  ]
 
   // Animation variants
   const sectionVariants: Variants = {
@@ -241,8 +251,8 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div variants={childVariants} className="order-2 lg:order-1 relative rounded-3xl overflow-hidden shadow-2xl h-80 lg:h-[500px]">
               <Image
-                src="https://elearning2.be.bisa.ai/portofolio/media/carousel_portofolio/2023-06-10_221301_41345_carousel_portofolio_3.png"
-                alt="Pertanian Presisi"
+                src="/assets/Foto_deteksi.webp"
+                alt="Sistem Deteksi"
                 fill
                 className="object-cover"
               />
@@ -412,54 +422,26 @@ export default function Home() {
           </div>
 
           <motion.div variants={childVariants} className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <a
-              href="https://bangkabelitung.pikiran-rakyat.com/babel/pr-3809352786/pt-rebinmas-jaya-dan-desa-aik-batu-buding-teken-mou-pembangunan-plasma"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="col-span-2 row-span-2 relative rounded-2xl overflow-hidden h-64 md:h-[400px] shadow-lg group block"
-            >
-              <Image
-                src="https://asset.tribunnews.com/--sACay9MF60wMUFGTjL_X2VYjo=/1200x675/filters:upscale():quality(30):format(webp):focal(0.5x0.5:0.5x0.5)/belitung/foto/bank/originals/rebinmas-jaya_20180312_095132.jpg"
-                alt="MoU Pembangunan Plasma"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                <p className="font-semibold">MoU Pembangunan Plasma - PT Rebinmas Jaya</p>
-                <p className="text-xs opacity-80">Klik untuk baca artikel lengkap</p>
-              </div>
-            </a>
-
-            {/* Actual Image 1 */}
-            <div className="relative rounded-2xl overflow-hidden h-48 md:h-[192px] shadow-lg group">
-              <Image
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnRnaJB-ogchSrEBC3jKNq4mmwmZsyiqPiaQ&s"
-                alt="CSR Activity"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-            </div>
-
-            {/* Actual Image 2 */}
-            <div className="relative rounded-2xl overflow-hidden h-48 md:h-[192px] shadow-lg group">
-              <Image
-                src="https://i.ytimg.com/vi/JKz6H4xbocU/maxresdefault.jpg"
-                alt="CSR Documentation"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                unoptimized
-              />
-            </div>
-
-            ```tsx
-            {/* Placeholder Grid Items */}
-            {[3, 4].map((item) => (
-              <div key={item} className="relative rounded-2xl overflow-hidden h-48 md:h-[192px] shadow-lg bg-gray-100 flex items-center justify-center border-2 border-dashed border-gray-300">
-                <span className="text-sm font-semibold text-gray-400 text-center px-4">foto belum tersedia</span>
+            {galleryImages.map((img, idx) => (
+              <div
+                key={idx}
+                onClick={() => setSelectedImage(img.src)}
+                className={`relative rounded-2xl overflow-hidden cursor-pointer shadow-lg group ${idx === 0 ? 'col-span-2 row-span-2 h-64 md:h-[400px]' : 'h-48 md:h-[192px]'
+                  }`}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
+                  <span className="text-white text-sm font-semibold tracking-wider flex items-center gap-2">
+                    <ExternalLink className="w-4 h-4" /> Buka Dokumentasi
+                  </span>
+                </div>
               </div>
             ))}
-            ```
           </motion.div>
         </motion.div>
       </section>
@@ -730,6 +712,43 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 lg:p-10"
+            onClick={() => setSelectedImage(null)}
+          >
+            <button
+              className="absolute top-6 right-6 text-white hover:text-gray-300 p-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors z-[110]"
+              onClick={() => setSelectedImage(null)}
+            >
+              <X className="w-8 h-8" />
+            </button>
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-6xl aspect-[4/3] md:aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={selectedImage}
+                alt="Galeri CSR Full"
+                fill
+                className="object-contain"
+                sizes="100vw"
+                priority
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   )
 }
