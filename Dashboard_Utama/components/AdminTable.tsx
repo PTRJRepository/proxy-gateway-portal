@@ -44,7 +44,7 @@ export default function AdminTable({ users, onDelete, onEdit, onResetPassword }:
                             Nama
                         </th>
                         <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Email
+                            Username
                         </th>
                         <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Password
@@ -105,7 +105,9 @@ export default function AdminTable({ users, onDelete, onEdit, onResetPassword }:
                             <td className="px-6 py-4 whitespace-nowrap">
                                 <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full
                     ${user.role === 'ADMIN' ? 'bg-purple-100 text-purple-800' :
-                                        user.role === 'ACCOUNTING' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'}`}>
+                                        ['ACCOUNTING', 'AKUNTING', 'HRD', 'PAJAK'].includes(user.role) ? 'bg-blue-100 text-blue-800' :
+                                            user.role === 'VISITOR' ? 'bg-gray-100 text-gray-800' :
+                                                'bg-green-100 text-green-800'}`}>
                                     {user.role}
                                 </span>
                             </td>

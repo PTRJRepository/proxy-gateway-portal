@@ -29,18 +29,8 @@ export async function createUser(data: {
             email: data.email,
             password: data.password,
             role: data.role,
-            divisi: data.divisi === 'ALL' ? undefined : data.divisi // Handle ALL as null or undefined? Or 'ALL'?
-            // The requirement says: "divisinya itu, bisa ada opsi ALL, artinya dia memiliki akses seluruh kerani"
-            // If I store 'ALL', I check for 'ALL'. If I store null, maybe that means 'ALL'?
-            // Let's store 'ALL' explicitly if the DB column allows.
-            // DB column is varchar/nvarchar?
-            // "divisi: null" usually implies no division.
-            // Let's use 'ALL' string if selected.
+            divisi: data.divisi
         })
-
-        // Wait, userRepository.create interface needs to be checked.
-        // It takes { divisi?: string }.
-        // If I pass 'ALL', it stores 'ALL'.
 
         if (newUser && data.serviceIds && data.serviceIds.length > 0) {
             await userRepository.assignServices(newUser.id, data.serviceIds)

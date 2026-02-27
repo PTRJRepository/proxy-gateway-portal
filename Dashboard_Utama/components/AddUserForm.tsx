@@ -33,11 +33,25 @@ export default function AddUserForm({ onClose, services }: AddUserFormProps) {
 
     const divisOptions = [
         { value: '', label: 'Pilih Divisi', disabled: true },
-        { value: 'ALL', label: 'ALL (Semua Kerani)', disabled: false },
-        { value: 'PGE 1A', label: 'PGE 1A', disabled: false },
-        { value: 'PGE 1B', label: 'PGE 1B', disabled: false },
-        { value: 'PGE 2A', label: 'PGE 2A', disabled: false },
-        { value: 'PGE 2B', label: 'PGE 2B', disabled: false }
+        { value: 'AL', label: 'AL (Full Access)', disabled: false },
+        { value: 'PG1A', label: 'Parit Gunung 1A', disabled: false },
+        { value: 'PG1B', label: 'Parit Gunung 1B', disabled: false },
+        { value: 'PG2A', label: 'Parit Gunung 2A', disabled: false },
+        { value: 'PG2B', label: 'Parit Gunung 2B', disabled: false },
+        { value: 'DME', label: 'Darul Makmur Estate', disabled: false },
+        { value: 'ARA', label: 'Ara Estate', disabled: false },
+        { value: 'ARB1', label: 'Arbei Estate 1', disabled: false },
+        { value: 'ARB2', label: 'Arbei Estate 2', disabled: false },
+        { value: 'INFRA', label: 'Infrastruktur', disabled: false },
+        { value: 'AREC', label: 'Area Civil', disabled: false },
+        { value: 'IJL', label: 'IJL Division', disabled: false },
+        { value: 'STF-OFFICE', label: 'Office Staff', disabled: false },
+        { value: 'SECURITY', label: 'Security', disabled: false },
+        { value: 'MILL', label: 'Mill/PKS', disabled: false },
+        { value: 'INF', label: 'Virtual: Infrastruktur', disabled: false },
+        { value: 'NRS', label: 'Virtual: Nursery', disabled: false },
+        { value: 'WKS_PG', label: 'Virtual: Workshop PG', disabled: false },
+        { value: 'WKS_AR', label: 'Virtual: Workshop AR', disabled: false }
     ]
 
     // Fetch gangs when divisi changes
@@ -148,13 +162,13 @@ export default function AddUserForm({ onClose, services }: AddUserFormProps) {
 
                         <div>
                             <label className="block text-sm font-semibold text-gray-800 mb-1">
-                                Email
+                                Username
                             </label>
                             <input
                                 name="email"
-                                type="email"
+                                type="text"
                                 required
-                                placeholder="contoh@email.com"
+                                placeholder="Masukkan username"
                                 className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm text-gray-900 bg-gray-50 focus:ring-2 focus:ring-palm-green focus:border-transparent transition-all placeholder:text-gray-500"
                             />
                         </div>
@@ -201,7 +215,10 @@ export default function AddUserForm({ onClose, services }: AddUserFormProps) {
                                 className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm text-gray-900 bg-gray-50 focus:ring-2 focus:ring-palm-green focus:border-transparent transition-all"
                             >
                                 <option value="KERANI" className="text-gray-900">Kerani</option>
-                                <option value="ACCOUNTING" className="text-gray-900">Accounting</option>
+                                <option value="AKUNTING" className="text-gray-900">Akunting</option>
+                                <option value="HRD" className="text-gray-900">HRD</option>
+                                <option value="PAJAK" className="text-gray-900">Pajak</option>
+                                <option value="VISITOR" className="text-gray-900">Visitor</option>
                                 <option value="ADMIN" className="text-gray-900">Admin</option>
                             </select>
                         </div>

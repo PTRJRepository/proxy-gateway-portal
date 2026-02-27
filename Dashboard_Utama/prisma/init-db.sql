@@ -128,6 +128,12 @@ VALUES ('ACCOUNTING', 'payroll-frontend'),
     ('ACCOUNTING', 'upah'),
     ('ACCOUNTING', 'absen'),
     ('ACCOUNTING', 'monitoring-beras');
+-- VISITOR gets all services
+INSERT INTO role_service_permission (role, serviceId)
+VALUES ('VISITOR', 'payroll-frontend'),
+    ('VISITOR', 'upah'),
+    ('VISITOR', 'absen'),
+    ('VISITOR', 'monitoring-beras');
 PRINT 'Role permissions seeded';
 END
 GO -- Note: User passwords will be seeded via application (bcrypt hash)

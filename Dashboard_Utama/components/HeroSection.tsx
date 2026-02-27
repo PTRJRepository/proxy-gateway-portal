@@ -65,7 +65,7 @@ export default function HeroSection() {
                     transition={{ duration: 0.6 }}
                     className="mb-8"
                 >
-                    <div className="relative w-40 h-40 md:w-48 md:h-48 mx-auto rounded-full bg-white/10 backdrop-blur-md p-3 shadow-2xl overflow-hidden">
+                    <div className="relative w-24 h-24 md:w-32 md:h-32 mx-auto rounded-full bg-white/10 backdrop-blur-md p-2 shadow-xl overflow-hidden mb-6">
                         <Image
                             src="/assets/logo.webp"
                             alt="PT Rebinmas Jaya"

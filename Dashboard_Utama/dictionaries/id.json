@@ -77,12 +77,28 @@
         "nameLbl": "Nama",
         "namePh": "Nama lengkap Anda",
         "emailLbl": "Email",
-        "emailPh": "email@contoh.com",
+        "emailPh": "email@rebinmasjaya.com",
         "subjLbl": "Subjek",
         "subjPh": "Subjek pesan",
         "msgLbl": "Pesan",
         "msgPh": "Tulis pesan Anda di sini...",
         "submitBtn": "Kirim Pesan"
+    },
+    "inovasi": {
+        "title": "Inovasi Teknologi & Pertanian Presisi",
+        "desc": "Menerapkan teknologi komputasi visual terkini untuk inventarisasi tegakan kelapa sawit yang akurat, memastikan estimasi hasil panen dan pemantauan kesehatan blok yang optimal."
+    },
+    "webgis": {
+        "title": "Pemetaan Spasial (WebGIS)",
+        "desc": "Manajemen lahan terintegrasi berbasis sistem informasi geografis. Mendukung pengambilan keputusan agronomis yang cepat dan presisi di seluruh area hak guna usaha."
+    },
+    "hr": {
+        "title": "Tata Kelola SDM & Kesejahteraan Karyawan",
+        "desc": "Mengedepankan transparansi dan kesejahteraan tenaga kerja melalui sistem manajemen kompensasi yang adil, terstruktur, dan digerakkan oleh data terpusat."
+    },
+    "csrGallery": {
+        "title": "Galeri CSR & Komunitas",
+        "desc": "Tumbuh bersama masyarakat Belitung. Menyalurkan dukungan nyata secara berkelanjutan untuk pendidikan, kesehatan, dan ketahanan pangan desa di sekitar area operasional kami."
     },
     "footer": {
         "desc": "Perusahaan perkebunan kelapa sawit yang berkomitmen pada keberlanjutan dan pemberdayaan masyarakat.",

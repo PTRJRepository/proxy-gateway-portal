@@ -77,12 +77,28 @@
         "nameLbl": "Name",
         "namePh": "Your full name",
         "emailLbl": "Email",
-        "emailPh": "email@example.com",
+        "emailPh": "email@rebinmasjaya.com",
         "subjLbl": "Subject",
         "subjPh": "Message subject",
         "msgLbl": "Message",
         "msgPh": "Write your message here...",
         "submitBtn": "Send Message"
+    },
+    "inovasi": {
+        "title": "Technological Innovation & Precision Agriculture",
+        "desc": "Applying the latest visual computing technology for an accurate inventory of oil palm stands, ensuring optimal harvest estimation and block health monitoring."
+    },
+    "webgis": {
+        "title": "Spatial Mapping (WebGIS)",
+        "desc": "Integrated land management based on geographic information systems. Supporting fast and precise agronomic decision-making across the entire cultivation right area."
+    },
+    "hr": {
+        "title": "HR Governance & Employee Welfare",
+        "desc": "Prioritizing transparency and workforce welfare through a fair, structured, and centralized data-driven compensation management system."
+    },
+    "csrGallery": {
+        "title": "CSR & Community Gallery",
+        "desc": "Growing with the Belitung community. Delivering continuous tangible support for education, health, and village food security around our operational areas."
     },
     "footer": {
         "desc": "A palm oil plantation company committed to sustainability and community empowerment.",

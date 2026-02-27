@@ -21,6 +21,34 @@ const nextConfig = {
     experimental: {
         forceSwcTransforms: true,
     },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'encrypted-tbn0.gstatic.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'bookdown.org',
+            },
+            {
+                protocol: 'https',
+                hostname: 'asset.tribunnews.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'images.unsplash.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'i.ytimg.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'memory.co.ke',
+            },
+        ],
+    },
 };
 
 module.exports = nextConfig;

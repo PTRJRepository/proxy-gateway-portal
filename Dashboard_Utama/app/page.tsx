@@ -229,6 +229,104 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* NEW: Inovasi Teknologi & Pertanian Presisi Section */}
+      <section id="inovasi" className="py-20 bg-gray-50">
+        <motion.div
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={sectionVariants}
+        >
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div variants={childVariants} className="order-2 lg:order-1 relative rounded-3xl overflow-hidden shadow-2xl h-80 lg:h-[500px]">
+              <Image
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfRcakmvtCveoB9xJokgKKZTnFmDrwByzm6A&s"
+                alt="Pertanian Presisi"
+                fill
+                className="object-cover"
+                unoptimized
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4 bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+                <div className="flex items-center gap-3 text-white">
+                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                  <span className="text-sm font-semibold tracking-wider">SMART DETECTION SYSTEM ACTIVE</span>
+                </div>
+              </div>
+            </motion.div>
+            <motion.div variants={childVariants} className="order-1 lg:order-2 space-y-6">
+              <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">{t.inovasi.title}</h2>
+              <div className="h-1 w-24 bg-palm-green rounded-full" />
+              <p className="text-lg text-gray-600 leading-relaxed">
+                {t.inovasi.desc}
+              </p>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* NEW: Pemetaan Spasial (WebGIS) Section */}
+      <section id="webgis" className="py-20 bg-white">
+        <motion.div
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={sectionVariants}
+        >
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div variants={childVariants} className="space-y-6">
+              <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">{t.webgis.title}</h2>
+              <div className="h-1 w-24 bg-palm-green rounded-full" />
+              <p className="text-lg text-gray-600 leading-relaxed">
+                {t.webgis.desc}
+              </p>
+            </motion.div>
+            <motion.div variants={childVariants} className="relative rounded-3xl overflow-hidden shadow-2xl h-80 lg:h-[500px] border-4 border-gray-100">
+              <Image
+                src="https://bookdown.org/einavg7/sp_technical_guide/images/lulcla.png"
+                alt="WebGIS Pemetaan Spasial"
+                fill
+                className="object-cover"
+                unoptimized
+              />
+              <div className="absolute inset-0 bg-blue-900/20 mix-blend-overlay" />
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* NEW: Tata Kelola SDM Section */}
+      <section id="hr" className="py-20 bg-gray-50">
+        <motion.div
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={sectionVariants}
+        >
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div variants={childVariants} className="order-2 lg:order-1 relative rounded-3xl overflow-hidden shadow-2xl h-80 lg:h-[500px]">
+              <Image
+                src="https://memory.co.ke/wp-content/uploads/2022/08/human-resource-management-software.jpg"
+                alt="Dashboard HR"
+                fill
+                className="object-cover"
+                unoptimized
+              />
+            </motion.div>
+            <motion.div variants={childVariants} className="order-1 lg:order-2 space-y-6">
+              <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">{t.hr.title}</h2>
+              <div className="h-1 w-24 bg-palm-green rounded-full" />
+              <p className="text-lg text-gray-600 leading-relaxed">
+                {t.hr.desc}
+              </p>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Keberlanjutan & CSR Section */}
       <section id="sustainability" className="py-20 bg-gradient-to-br from-palm-green to-earth-brown text-white relative overflow-hidden">
         {/* Decorative elements */}
@@ -296,6 +394,72 @@ export default function Home() {
                 <p className="text-sm text-white/90">{t.sustainability.csr3}</p>
               </div>
             </div>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* NEW: Galeri CSR & Komunitas Section */}
+      <section id="csr-gallery" className="py-20 bg-white">
+        <motion.div
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={sectionVariants}
+        >
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">{t.csrGallery.title}</h2>
+            <div className="mt-4 h-1 w-24 bg-palm-green mx-auto rounded-full mb-6" />
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">{t.csrGallery.desc}</p>
+          </div>
+
+          <motion.div variants={childVariants} className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <a
+              href="https://bangkabelitung.pikiran-rakyat.com/babel/pr-3809352786/pt-rebinmas-jaya-dan-desa-aik-batu-buding-teken-mou-pembangunan-plasma"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="col-span-2 row-span-2 relative rounded-2xl overflow-hidden h-64 md:h-[400px] shadow-lg group block"
+            >
+              <Image
+                src="https://asset.tribunnews.com/--sACay9MF60wMUFGTjL_X2VYjo=/1200x675/filters:upscale():quality(30):format(webp):focal(0.5x0.5:0.5x0.5)/belitung/foto/bank/originals/rebinmas-jaya_20180312_095132.jpg"
+                alt="MoU Pembangunan Plasma"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                <p className="font-semibold">MoU Pembangunan Plasma - PT Rebinmas Jaya</p>
+                <p className="text-xs opacity-80">Klik untuk baca artikel lengkap</p>
+              </div>
+            </a>
+
+            {/* Actual Image 1 */}
+            <div className="relative rounded-2xl overflow-hidden h-48 md:h-[192px] shadow-lg group">
+              <Image
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnRnaJB-ogchSrEBC3jKNq4mmwmZsyiqPiaQ&s"
+                alt="CSR Activity"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+
+            {/* Actual Image 2 */}
+            <div className="relative rounded-2xl overflow-hidden h-48 md:h-[192px] shadow-lg group">
+              <Image
+                src="https://i.ytimg.com/vi/JKz6H4xbocU/maxresdefault.jpg"
+                alt="CSR Documentation"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                unoptimized
+              />
+            </div>
+
+            {/* Placeholder Grid Items */}
+            {[3, 4].map((item) => (
+              <div key={item} className="relative rounded-2xl overflow-hidden h-48 md:h-[192px] shadow-lg bg-gray-100 flex items-center justify-center border-2 border-dashed border-gray-300">
+                <span className="text-sm font-semibold text-gray-400 text-center px-4">Ruang untuk Foto CSR Asli Anda</span>
+              </div>
+            ))}
           </motion.div>
         </motion.div>
       </section>
@@ -549,7 +713,7 @@ export default function Home() {
                 </p>
                 <p className="flex items-center gap-3">
                   <Mail className="h-5 w-5 text-golden-yellow" />
-                  info@rebinmasjaya.co.id
+                  info@rebinmasjaya.com
                 </p>
                 <p className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-golden-yellow mt-0.5 flex-shrink-0" />

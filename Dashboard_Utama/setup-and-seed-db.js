@@ -318,6 +318,21 @@ async function setupAndSeed() {
             }
         }
 
+        // Ensure VISITOR has everything except query
+        for (const sid of allServices) {
+            if (sid === 'query') continue;
+            const check = await pool.request()
+                .input('role', sql.NVarChar, 'VISITOR')
+                .input('sid', sql.NVarChar, sid)
+                .query('SELECT id FROM role_service_permission WHERE role = @role AND serviceId = @sid');
+            if (check.recordset.length === 0) {
+                await pool.request()
+                    .input('role', sql.NVarChar, 'VISITOR')
+                    .input('sid', sql.NVarChar, sid)
+                    .query('INSERT INTO role_service_permission (role, serviceId) VALUES (@role, @sid)');
+            }
+        }
+
         console.log('\nAll seeds completed successfully.');
 
     } catch (err) {
